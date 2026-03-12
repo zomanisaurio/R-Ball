@@ -39,7 +39,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:var(--dark);font-fam
 /* HOME */
 .home-bg{position:absolute;inset:0;overflow:hidden;z-index:0;}
 .home-ball-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at center,#1a0800 0%,#0A0A0F 70%);}
-.spinning-ball{font-size:340px;line-height:1;opacity:0.15;user-select:none;animation:spinBall 4s linear infinite;}
+.spinning-ball{font-size:340px;line-height:1;opacity:0.55;user-select:none;animation:spinBall 4s linear infinite;filter:drop-shadow(0 0 40px rgba(255,107,0,0.4));}
 @keyframes spinBall{0%{transform:rotate(0deg) scale(1);}50%{transform:rotate(180deg) scale(1.06);}100%{transform:rotate(360deg) scale(1);}}
 .home-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,15,.3) 0%,rgba(10,10,15,.85) 60%,var(--dark) 100%);}
 .home-content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:20px;gap:12px;}
@@ -216,6 +216,25 @@ input:focus,textarea:focus{border-color:var(--orange);}
 .export-card p{font-size:16px;color:var(--gray);font-weight:600;}
 #export-data,#import-data{resize:none;font-family:monospace;font-size:12px;line-height:1.4;height:160px;}
 
+/* SETTINGS */
+.settings-section{width:100%;display:flex;flex-direction:column;gap:10px;padding-bottom:32px;}
+.settings-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:var(--orange);margin-top:4px;}
+.settings-desc{font-size:13px;color:var(--gray);}
+.settings-divider{height:1px;background:var(--card-border);margin:8px 0;}
+.settings-toggle-row{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.difficulty-grid{display:flex;flex-direction:column;gap:8px;}
+.diff-btn{display:grid;grid-template-columns:44px 1fr;grid-template-rows:auto auto;align-items:center;gap:1px 10px;padding:12px 14px;background:var(--dark3);border:2px solid var(--card-border);border-radius:14px;color:var(--white);cursor:pointer;text-align:left;width:100%;}
+.diff-btn:active{transform:scale(.98);}
+.diff-btn.selected{border-color:var(--orange);background:rgba(255,107,0,0.1);}
+.diff-icon{font-size:26px;grid-row:1/3;display:flex;align-items:center;justify-content:center;}
+.diff-name{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:1px;}
+.diff-desc{font-size:11px;color:var(--gray);}
+.win-score-row{display:flex;gap:8px;}
+.score-btn{flex:1;padding:10px 0;background:var(--dark3);border:2px solid var(--card-border);border-radius:10px;color:var(--white);font-family:'Bebas Neue',sans-serif;font-size:18px;cursor:pointer;}
+.score-btn.selected{border-color:var(--orange);background:rgba(255,107,0,0.1);color:var(--orange);}
+.toggle-btn{padding:8px 20px;background:var(--dark3);border:2px solid var(--green);border-radius:10px;color:var(--green);font-family:'Bebas Neue',sans-serif;font-size:16px;cursor:pointer;min-width:60px;}
+.toggle-btn.off{border-color:var(--red);color:var(--red);}
+
 /* P2P */
 .p2p-card{background:var(--dark3);border:1.5px solid var(--card-border);border-radius:20px;padding:24px;width:100%;max-width:380px;display:flex;flex-direction:column;gap:16px;}
 .p2p-room-code{text-align:center;font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:6px;color:var(--orange);background:rgba(255,107,0,.1);border-radius:12px;padding:14px;}
@@ -255,6 +274,27 @@ input:focus,textarea:focus{border-color:var(--orange);}
 /* AUDIO */
 .audio-fab{position:fixed;bottom:72px;right:14px;z-index:50;width:42px;height:42px;border-radius:50%;background:var(--dark3);border:1.5px solid var(--card-border);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,.4);}
 .audio-fab.match-mode{bottom:58px;}
+
+/* TIMING GAUGE */
+.timing-gauge-overlay{
+  position:fixed;bottom:0;left:0;right:0;z-index:999;
+  background:rgba(0,0,0,0.92);
+  backdrop-filter:blur(6px);
+  padding:20px 20px 36px;
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+  border-top:2px solid var(--orange);
+  box-shadow:0 -8px 40px rgba(255,107,0,0.25);
+  animation:slideUpG .2s ease;
+  pointer-events:all;
+}
+.timing-gauge-overlay.hidden{display:none;}
+@keyframes slideUpG{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.timing-gauge-label{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:var(--white);text-align:center;}
+.timing-gauge-track{width:100%;max-width:360px;height:38px;background:var(--dark3);border-radius:20px;position:relative;overflow:hidden;border:2px solid var(--card-border);}
+.timing-gauge-green{position:absolute;top:0;bottom:0;background:linear-gradient(90deg,#00e676,#69ff47);border-radius:20px;opacity:.9;}
+.timing-gauge-cursor{position:absolute;top:0;bottom:0;width:5px;background:#fff;border-radius:3px;box-shadow:0 0 12px #fff,0 0 4px #fff;}
+.timing-gauge-btn{padding:14px 0;width:100%;max-width:360px;background:linear-gradient(135deg,var(--orange),var(--orange-light));color:#fff;border:none;border-radius:14px;font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;cursor:pointer;box-shadow:0 4px 20px rgba(255,107,0,.45);}
+.timing-gauge-btn:active{transform:scale(.97);}
   </style>
 </head>
 <body>
@@ -274,8 +314,7 @@ input:focus,textarea:focus{border-color:var(--orange);}
       <button class="btn-primary" onclick="showScreen('screen-pseudo')">🏀 JOUER</button>
       <button class="btn-secondary" onclick="showCollection()">📦 COLLECTION</button>
       <button class="btn-secondary" onclick="showShop()">🛒 BOUTIQUE</button>
-      <button class="btn-outline" onclick="prepareExport()">📤 EXPORTER</button>
-      <button class="btn-outline" onclick="showScreen('screen-import')">📥 IMPORTER</button>
+      <button class="btn-outline" onclick="showScreen('screen-settings')">⚙️ PARAMÈTRES</button>
     </div>
     <div class="home-credits-display" id="home-credits">💰 200 crédits</div>
   </div>
@@ -382,6 +421,98 @@ input:focus,textarea:focus{border-color:var(--orange);}
   </div>
 </div>
 
+<!-- SETTINGS -->
+<div id="screen-settings" class="screen">
+  <div class="screen-header">
+    <button class="btn-back" onclick="showScreen('screen-home')">←</button>
+    <h1>⚙️ PARAMÈTRES</h1>
+  </div>
+  <div class="screen-body">
+    <div class="settings-section">
+
+      <!-- DIFFICULTÉ -->
+      <div class="settings-title">🤖 NIVEAU DE L'IA</div>
+      <div class="difficulty-grid" id="difficulty-grid">
+        <button class="diff-btn" data-diff="easy"   onclick="setDifficulty('easy')">
+          <span class="diff-icon">😴</span>
+          <span class="diff-name">FACILE</span>
+          <span class="diff-desc">L'IA joue au hasard, rate souvent</span>
+        </button>
+        <button class="diff-btn" data-diff="normal" onclick="setDifficulty('normal')">
+          <span class="diff-icon">🏀</span>
+          <span class="diff-name">NORMAL</span>
+          <span class="diff-desc">Équilibré, quelques erreurs</span>
+        </button>
+        <button class="diff-btn" data-diff="hard"   onclick="setDifficulty('hard')">
+          <span class="diff-icon">🔥</span>
+          <span class="diff-name">DIFFICILE</span>
+          <span class="diff-desc">Stratégique et agressive</span>
+        </button>
+        <button class="diff-btn" data-diff="legend" onclick="setDifficulty('legend')">
+          <span class="diff-icon">👑</span>
+          <span class="diff-name">LÉGENDAIRE</span>
+          <span class="diff-desc">Quasi-parfaite, bonne chance</span>
+        </button>
+      </div>
+
+      <div class="settings-divider"></div>
+
+      <!-- SCORE VICTOIRE -->
+      <div class="settings-title">🏆 SCORE DE VICTOIRE</div>
+      <div class="settings-desc" id="win-score-label">Premier à <b>21 pts</b> gagne</div>
+      <div class="win-score-row">
+        <button class="score-btn" onclick="setWinScore(11)">11</button>
+        <button class="score-btn" onclick="setWinScore(15)">15</button>
+        <button class="score-btn" onclick="setWinScore(21)">21</button>
+        <button class="score-btn" onclick="setWinScore(30)">30</button>
+      </div>
+
+      <div class="settings-divider"></div>
+
+      <!-- TIMER PAR TOUR -->
+      <div class="settings-title">⏱️ TIMER PAR TOUR</div>
+      <div class="settings-desc" id="turn-timer-label">Pas de limite de temps</div>
+      <div class="win-score-row">
+        <button class="score-btn" onclick="setTurnTimer(0)">OFF</button>
+        <button class="score-btn" onclick="setTurnTimer(15)">15s</button>
+        <button class="score-btn" onclick="setTurnTimer(30)">30s</button>
+        <button class="score-btn" onclick="setTurnTimer(60)">60s</button>
+      </div>
+
+      <div class="settings-divider"></div>
+
+      <!-- ANIMATIONS -->
+      <div class="settings-title">🎬 ANIMATIONS GIF</div>
+      <div class="settings-toggle-row">
+        <span class="settings-desc">Afficher les GIFs pendant les actions</span>
+        <button class="toggle-btn" id="gif-toggle" onclick="toggleGifs()">ON</button>
+      </div>
+
+      <div class="settings-divider"></div>
+
+      <!-- DONNÉES -->
+      <div class="settings-title">💾 DONNÉES</div>
+      <button class="btn-outline" style="width:100%;margin-bottom:8px" onclick="showSettingsExport()">📤 EXPORTER MA SAUVEGARDE</button>
+      <button class="btn-outline" style="width:100%;margin-bottom:8px" onclick="showSettingsImport()">📥 IMPORTER UNE SAUVEGARDE</button>
+      <div id="settings-export-area" class="hidden" style="width:100%">
+        <textarea class="input-field" id="settings-export-data" rows="4" readonly style="font-size:11px;font-family:monospace"></textarea>
+        <button class="btn-secondary" style="width:100%;margin-top:6px" onclick="copySettingsExport()">📋 COPIER</button>
+      </div>
+      <div id="settings-import-area" class="hidden" style="width:100%">
+        <textarea class="input-field" id="settings-import-data" rows="4" placeholder="Colle ta sauvegarde ici..." style="font-size:11px;font-family:monospace"></textarea>
+        <button class="btn-secondary" style="width:100%;margin-top:6px" onclick="doSettingsImport()">✅ IMPORTER</button>
+      </div>
+
+      <div class="settings-divider"></div>
+
+      <!-- RESET -->
+      <div class="settings-title">⚠️ RÉINITIALISER</div>
+      <button class="btn-outline" style="width:100%;border-color:var(--red);color:var(--red)" onclick="confirmReset()">🗑️ EFFACER TOUTE LA PROGRESSION</button>
+
+    </div>
+  </div>
+</div>
+
 <!-- MATCH -->
 <div id="screen-match" class="screen">
   <div class="match-header">
@@ -396,6 +527,7 @@ input:focus,textarea:focus{border-color:var(--orange);}
       <div class="vs-text">VS</div>
       <div class="ball-indicator" id="ball-indicator">🏀 TON TOUR</div>
       <div class="match-turn" id="match-turn-count">Tour 1</div>
+      <button onclick="openPause()" style="margin-top:4px;background:none;border:1px solid rgba(255,107,0,0.35);color:rgba(255,255,255,0.6);font-size:14px;padding:3px 9px;border-radius:7px;cursor:pointer;font-family:'Bebas Neue',sans-serif;letter-spacing:1px;">⏸ PAUSE</button>
     </div>
     <div class="match-team right">
       <div class="team-info right">
@@ -406,9 +538,8 @@ input:focus,textarea:focus{border-color:var(--orange);}
     </div>
   </div>
   <div class="match-action-area">
-    <div class="match-gif-container">
-      <img id="match-gif" src="https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif" alt="action" />
-      <div class="match-gif-overlay" id="match-gif-overlay"></div>
+    <div class="match-gif-container" style="position:relative;background:#0a0a14;">
+      <canvas id="match-canvas" width="360" height="150" style="width:100%;height:150px;display:block;"></canvas>
     </div>
     <div class="match-log" id="match-log"><div class="log-entry">🏀 Le match commence!</div></div>
   </div>
@@ -425,6 +556,26 @@ input:focus,textarea:focus{border-color:var(--orange);}
   <div class="match-footer">
     <button class="btn-quit" onclick="quitMatch()">✕ QUITTER</button>
   </div>
+</div>
+
+<!-- PAUSE MODAL -->
+<div id="pause-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:900;align-items:center;justify-content:center;">
+  <div style="background:#14141f;border:2px solid rgba(255,107,0,0.5);border-radius:18px;padding:32px 28px;width:88%;max-width:320px;text-align:center;">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:#FF6B00;letter-spacing:3px;margin-bottom:6px;">⏸ PAUSE</div>
+    <div style="color:rgba(255,255,255,0.5);font-size:13px;margin-bottom:24px;">Le match est en pause</div>
+    <button onclick="closePause()" style="width:100%;padding:14px;background:linear-gradient(135deg,#FF6B00,#ff9900);border:none;border-radius:12px;font-family:'Bebas Neue',sans-serif;font-size:20px;color:#000;cursor:pointer;margin-bottom:12px;letter-spacing:2px;">▶ REPRENDRE</button>
+    <button onclick="pauseQuit()" style="width:100%;padding:14px;background:#1e1e2e;border:1.5px solid rgba(255,60,60,0.5);border-radius:12px;font-family:'Bebas Neue',sans-serif;font-size:18px;color:#ff4455;cursor:pointer;letter-spacing:2px;">✕ QUITTER LA PARTIE</button>
+  </div>
+</div>
+
+<!-- TIMING GAUGE — popup flottant global -->
+<div id="timing-gauge-overlay" class="timing-gauge-overlay hidden">
+  <div class="timing-gauge-label" id="timing-gauge-label">🎯 APPUIE !</div>
+  <div class="timing-gauge-track">
+    <div class="timing-gauge-green" id="timing-gauge-green"></div>
+    <div class="timing-gauge-cursor" id="timing-gauge-cursor"></div>
+  </div>
+  <button class="timing-gauge-btn" id="timing-gauge-btn" onclick="timingStop()">⚡ STOP</button>
 </div>
 
 <!-- MATCH END -->
@@ -484,24 +635,28 @@ input:focus,textarea:focus{border-color:var(--orange);}
   <div class="screen-body center-content">
     <div class="p2p-card">
       <div class="p2p-status-badge" id="p2p-status-badge">🔴 Déconnecté</div>
-      <div class="p2p-room-code" id="p2p-room-display">...</div>
 
       <!-- CREATE flow -->
-      <div id="p2p-create-section" style="display:none;width:100%">
-        <p style="color:var(--gray);font-size:14px;text-align:center">Partage ce code à ton adversaire</p>
-        <button class="btn-secondary" onclick="p2pCopyCode()" style="margin-top:4px">📋 COPIER LE CODE</button>
+      <div id="p2p-create-section" style="display:none;width:100%;text-align:center">
+        <p style="color:var(--gray);font-size:13px;margin-bottom:6px">Ton code de salle :</p>
+        <div class="p2p-room-code" id="p2p-room-display" style="font-size:22px;letter-spacing:4px">…</div>
+        <button class="btn-secondary" onclick="p2pCopyCode()" style="margin-top:10px;width:100%">📋 COPIER LE CODE</button>
+        <p style="color:rgba(255,255,255,0.35);font-size:11px;margin-top:8px">Envoie ce code à ton adversaire.<br>Il peut copier-coller directement.</p>
       </div>
 
       <!-- JOIN flow -->
       <div id="p2p-join-form" style="display:none;width:100%">
-        <input type="text" id="p2p-room-input" placeholder="CODE DE L'ADVERSAIRE" maxlength="20" style="text-align:center;letter-spacing:2px;font-size:18px" />
-        <button class="btn-primary" onclick="p2pConnect()" style="margin-top:8px">🔗 CONNECTER</button>
+        <p style="color:var(--gray);font-size:13px;text-align:center;margin-bottom:6px">Entre le code reçu :</p>
+        <input type="text" id="p2p-room-input" placeholder="EX: RBXYZ123" maxlength="12"
+          style="text-align:center;letter-spacing:3px;font-size:20px;text-transform:uppercase"
+          oninput="this.value=this.value.toUpperCase()" />
+        <button class="btn-primary" onclick="p2pConnect()" style="margin-top:10px">🔗 CONNECTER</button>
       </div>
 
       <div class="p2p-players-list" id="p2p-players-list"></div>
       <div class="p2p-log" id="p2p-log"></div>
 
-      <button class="btn-primary" id="p2p-start-btn" onclick="p2pStartGame()" style="display:none">🏀 LANCER LE MATCH</button>
+      <button class="btn-primary" id="p2p-start-btn" onclick="p2pStartGame()" style="display:none;background:linear-gradient(135deg,#FF6B00,#ff9900);color:#000;font-size:20px">🏀 LANCER LE MATCH</button>
     </div>
   </div>
 </div>
@@ -519,7 +674,7 @@ input:focus,textarea:focus{border-color:var(--orange);}
 <!-- Audio FAB -->
 <button class="audio-fab" id="audio-fab" onclick="toggleMute()" title="Son">🔊</button>
 
-<script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <script>
 /* ==============================
    R-BALL — GAME ENGINE
@@ -600,12 +755,43 @@ function randomGif(type){
 }
 
 // PLAYER STATE
+// ═══════════════════════════════════════════
+// DIFFICULTY SYSTEM (déclaré avant PS)
+// ═══════════════════════════════════════════
+const DIFFICULTY = {
+  easy:   { label:'Facile',     rateMulti:0.55, stealChance:0.25, thinkDelay:1400, missChance:0.35 },
+  normal: { label:'Normal',     rateMulti:0.85, stealChance:0.55, thinkDelay:900,  missChance:0.15 },
+  hard:   { label:'Difficile',  rateMulti:1.0,  stealChance:0.80, thinkDelay:650,  missChance:0.05 },
+  legend: { label:'Légendaire', rateMulti:1.1,  stealChance:0.95, thinkDelay:400,  missChance:0.0  },
+};
+let currentDifficulty = 'easy';
+
+function setDifficulty(diff){
+  currentDifficulty = diff;
+  PS.difficulty = diff;
+  save();
+  document.querySelectorAll('.diff-btn').forEach(b=>b.classList.toggle('selected', b.dataset.diff===diff));
+}
+
+function refreshDifficultyUI(){
+  document.querySelectorAll('.diff-btn').forEach(b=>b.classList.toggle('selected', b.dataset.diff===currentDifficulty));
+}
+
+function aiSuccessRate(action, ai){
+  const diff = DIFFICULTY[currentDifficulty];
+  const sb = Math.max(0,(ai.stats[action.requiredStat]||70)-action.requiredValue);
+  const base = Math.min(0.97,(action.successRate+sb*0.3)/100);
+  if(Math.random() < diff.missChance) return 0.1;
+  return Math.min(0.97, base * diff.rateMulti);
+}
+
 let PS = {
   pseudo:"",
   credits:200,
   collection:{players:["p1","p2"],actions:["a1","a2","a3","a7","a8","a13","pass"]},
   deck:["a1","a2","a3","a7","a8","a13","pass"],
-  selectedPlayer:"p1"
+  selectedPlayer:"p1",
+  difficulty:"easy"
 };
 
 // MATCH STATE
@@ -621,14 +807,18 @@ let isAiTurn = false;
 
 // INIT
 try{const s=localStorage.getItem('rball');if(s){const d=JSON.parse(s);PS={...PS,...d};}}catch(e){}
+currentDifficulty = PS.difficulty || 'easy';
 updateHomeCredits();
+setTimeout(refreshDifficultyUI, 50);
 
 function save(){try{localStorage.setItem('rball',JSON.stringify(PS));}catch(e){}}
+function savePS(){save();}
 
 function showScreen(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   const el=document.getElementById(id);
   if(el)el.classList.add('active');
+  if(id==='screen-settings') setTimeout(refreshSettingsUI,50);
 }
 
 function updateHomeCredits(){
@@ -822,6 +1012,9 @@ function startMatch(isP2P){
   updateMatchUI();
   showScreen('screen-match');
 
+  // Init canvas animation with player images
+  ANIM.init(player.image, aiPlayer.image);
+
   if(MS.aiHasBall){setAiTurn(true);setTimeout(runAiFullTurn,1200);}
 }
 
@@ -869,40 +1062,51 @@ function playAction(action){
 
   // ── MODE P2P ──
   if(MS.p2pMode){
-    if(!myTurn){addLog('⛔ Pas ton tour!','fail');return;}
-    if(scoringType&&!MS.hasBall){addLog("❌ Tu n'as pas la balle!",'fail');return;}
+    if(!myTurn){addLog('⛔ Pas ton tour !','fail');return;}
+    if(scoringType&&!MS.hasBall){addLog("❌ Tu n'as pas la balle !",'fail');return;}
+
     const sb=Math.max(0,(player.stats[action.requiredStat]||70)-action.requiredValue);
     const rate=Math.min(0.97,(action.successRate+sb*0.3)/100);
     const ok=Math.random()<rate;
-    p2pSend({type:'action', actionId:action.id, ok});
+
+    flashGif(action.type, ok);
+
     if(scoringType){
       if(ok){
         MS.playerScore+=action.points;
-        addLog(`🔥 ${action.emoji} ${action.name} — +${action.points}pts!`,'score');
         animScore('match-player-score',MS.playerScore);
-        flashGif(action.type,true); AUDIO.play('score');
+        addLog(`🔥 ${action.emoji} ${action.name} — +${action.points}pts !`,'score');
+        AUDIO.play('score');
         MS.hasBall=false; MS.aiHasBall=true;
       }else{
-        addLog(`❌ ${action.emoji} ${action.name} — Raté!`,'fail');
-        flashGif(action.type,false); AUDIO.play('fail');
+        addLog(`❌ ${action.emoji} ${action.name} — Raté !`,'fail');
+        AUDIO.play('fail');
         MS.hasBall=false; MS.aiHasBall=true;
       }
-    }else if(['Défense','Ability'].includes(action.type)){
+    }else if(action.type==='Défense'){
       if(ok&&MS.aiHasBall){
         MS.hasBall=true; MS.aiHasBall=false;
-        addLog(`✅ ${action.emoji} ${action.name} — Tu récupères!`,'success');
-        flashGif(action.type,true);
+        addLog(`✅ ${action.emoji} ${action.name} — Tu récupères !`,'success');
+        AUDIO.play('block');
       }else{
-        addLog(`❌ ${action.emoji} ${action.name} — Raté!`,'fail');
-        flashGif(action.type,false);
+        addLog(`❌ ${action.emoji} ${action.name} — Raté !`,'fail');
       }
+    }else{
+      addLog(`${action.emoji} ${action.name}`,'info');
     }
+
     if(action.cooldown>0) MS.cooldowns[action.id]=action.cooldown;
-    if(scoringType||((['Défense','Ability'].includes(action.type))&&ok&&!MS.hasBall)){
-      myTurn=false; setAiTurn(true);
-      addLog('⏳ Tour de l\'adversaire...','info');
-    }
-    buildMatchDeck(); updateMatchUI(); checkEnd();
+    p2pSend({type:'action', actionId:action.id, ok});
+
+    buildMatchDeck(); updateMatchUI();
+    if(checkEnd()) return;
+
+    // Passe le tour à l'adversaire
+    myTurn=false;
+    isAiTurn=true;
+    document.getElementById('end-turn-btn').disabled=true;
+    addLog('⏳ Tour de l\'adversaire…','info');
+    buildMatchDeck();
     return;
   }
 
@@ -916,62 +1120,55 @@ function playAction(action){
   const ok=Math.random()<rate;
 
   if(['Défense','Ability'].includes(action.type)&&MS.aiHasBall){
-    // ─── DÉFENSE JOUEUR vs possession IA ───
-    if(ok){
-      MS.hasBall=true;MS.aiHasBall=false;
-      addLog(`✅ ${action.emoji} ${action.name} — Tu récupères la balle!`,'success');
-      flashGif(action.type,true);
-    }else{
-      addLog(`❌ ${action.emoji} ${action.name} — Raté! L'IA garde la balle.`,'fail');
-      flashGif(action.type,false);
-    }
-    // CD dynamique selon stats def du joueur
+    // ─── DÉFENSE JOUEUR vs possession IA : pas de jauge, juste le stat check ───
+    const sb2=Math.max(0,(player.stats[action.requiredStat]||70)-action.requiredValue);
+    const rate2=Math.min(0.97,(action.successRate+sb2*0.3)/100);
+    const ok2=Math.random()<rate2;
+    if(ok2){ MS.hasBall=true;MS.aiHasBall=false; addLog(`✅ ${action.emoji} ${action.name} — Tu récupères la balle!`,'success'); flashGif(action.type,true); }
+    else   { addLog(`❌ ${action.emoji} ${action.name} — Raté! L'IA garde la balle.`,'fail'); flashGif(action.type,false); }
     MS.cooldowns[action.id]=defCooldown(player);
     buildMatchDeck();updateMatchUI();
     if(checkEnd())return;
-    if(MS.aiHasBall){
-      decCDs(MS.cooldowns);MS.turnCount++;
-      document.getElementById('match-turn-count').textContent=`Tour ${MS.turnCount}`;
-      setAiTurn(true);setTimeout(runAiFullTurn,900);
-    }
+    if(MS.aiHasBall){ decCDs(MS.cooldowns);MS.turnCount++; document.getElementById('match-turn-count').textContent=`Tour ${MS.turnCount}`; setAiTurn(true);setTimeout(runAiFullTurn,900); }
     return;
   }
 
   if(scoringType){
-    if(ok){
-      addLog(`🚀 ${action.emoji} ${action.name} — Lancer tenté...`,'info');
-      // L'IA peut bloquer manuellement si elle a une carte dispo
-      const aiCanBlock = aiHasBlockingCard();
-      if(aiCanBlock){
-        resolveAiBlock(action, player);
-      }else{
-        setTimeout(()=>{
-          MS.playerScore+=action.points;
-          addLog(`🔥🔥 +${action.points}pts! RENTRÉ!`,'score');
-          animScore('match-player-score',MS.playerScore);
-          flashGif(action.type,true);
-          AUDIO.play('score');
-          MS.hasBall=false;MS.aiHasBall=true;
-          if(action.cooldown>0)MS.cooldowns[action.id]=action.cooldown;
-          buildMatchDeck();updateMatchUI();
-          if(checkEnd())return;
-          decCDs(MS.cooldowns);MS.turnCount++;
-          document.getElementById('match-turn-count').textContent=`Tour ${MS.turnCount}`;
-          setAiTurn(true);setTimeout(runAiFullTurn,900);
-        },700);
+    // ─── TIR JOUEUR : timing gauge ───
+    showTimingForShot(`${action.emoji} ${action.name} — VISE LE VERT!`, false,
+      ()=>{ // Succès timing → tir réussi
+        addLog(`🚀 ${action.emoji} ${action.name} — Lancer tenté...`,'info');
+        const aiCanBlock = aiHasBlockingCard();
+        if(aiCanBlock){
+          resolveAiBlock(action, player);
+        }else{
+          setTimeout(()=>{
+            MS.playerScore+=action.points;
+            addLog(`🔥🔥 +${action.points}pts! RENTRÉ!`,'score');
+            animScore('match-player-score',MS.playerScore);
+            flashGif(action.type,true); AUDIO.play('score');
+            MS.hasBall=false;MS.aiHasBall=true;
+            if(action.cooldown>0)MS.cooldowns[action.id]=action.cooldown;
+            buildMatchDeck();updateMatchUI();
+            if(checkEnd())return;
+            decCDs(MS.cooldowns);MS.turnCount++;
+            document.getElementById('match-turn-count').textContent=`Tour ${MS.turnCount}`;
+            setAiTurn(true);setTimeout(runAiFullTurn,900);
+          },700);
+        }
+      },
+      ()=>{ // Échec timing → tir raté
+        addLog(`❌ ${action.emoji} ${action.name} — Timing raté! Tir manqué.`,'fail');
+        flashGif(action.type,false); AUDIO.play('fail');
+        MS.hasBall=false;MS.aiHasBall=true;
+        if(action.cooldown>0)MS.cooldowns[action.id]=action.cooldown;
+        buildMatchDeck();updateMatchUI();
+        if(checkEnd())return;
+        decCDs(MS.cooldowns);MS.turnCount++;
+        document.getElementById('match-turn-count').textContent=`Tour ${MS.turnCount}`;
+        setAiTurn(true);setTimeout(runAiFullTurn,900);
       }
-    }else{
-      addLog(`❌ ${action.emoji} ${action.name} — Raté!`,'fail');
-      flashGif(action.type,false);
-      AUDIO.play('fail');
-      MS.hasBall=false;MS.aiHasBall=true;
-      if(action.cooldown>0)MS.cooldowns[action.id]=action.cooldown;
-      buildMatchDeck();updateMatchUI();
-      if(checkEnd())return;
-      decCDs(MS.cooldowns);MS.turnCount++;
-      document.getElementById('match-turn-count').textContent=`Tour ${MS.turnCount}`;
-      setAiTurn(true);setTimeout(runAiFullTurn,900);
-    }
+    );
     return;
   }
 
@@ -1052,16 +1249,17 @@ function endTurn(){
 
   // ── MODE P2P ──
   if(MS.p2pMode){
-    if(!myTurn)return;
+    if(!myTurn) return;
     addLog('⏭️ Tu passes ton tour.','info');
-    p2pSend({type:'skip'});
     decCDs(MS.cooldowns);
     MS.turnCount++;
     document.getElementById('match-turn-count').textContent=`Tour ${MS.turnCount}`;
+    p2pSend({type:'skip'});
     myTurn=false;
-    setAiTurn(true);
-    addLog('⏳ Tour de l\'adversaire...','info');
+    isAiTurn=true;
+    document.getElementById('end-turn-btn').disabled=true;
     buildMatchDeck();
+    addLog('⏳ Tour de l\'adversaire…','info');
     return;
   }
 
@@ -1143,9 +1341,10 @@ function aiShouldSteal(ai, avail){
   const gap=MS.aiScore-MS.playerScore;
   const def=avail.filter(a=>['Défense','Ability'].includes(a.type));
   if(!def.length)return false;
-  // L'IA tente toujours de voler si elle est en retard ou si le taux est bon
+  const diff=DIFFICULTY[currentDifficulty];
+  // En facile, l'IA tente rarement de voler
+  if(Math.random() > diff.stealChance) return false;
   if(gap<0)return true;
-  // En avance, tente quand même si bonne carte dispo
   const best=def[0];
   const sb=Math.max(0,(ai.stats[best.requiredStat]||70)-best.requiredValue);
   const rate=(best.successRate+sb*0.3)/100;
@@ -1161,9 +1360,9 @@ function runAiFullTurn(){
 
 function aiStep(depth){
   if(depth>8||checkEnd())return finishAiTurn();
-
   const ai=MS.aiPlayer;
   const avail=MS.aiDeck.filter(a=>canUseAction(a,ai,MS.aiCooldowns));
+  const delay=DIFFICULTY[currentDifficulty].thinkDelay;
 
   if(MS.aiHasBall){
     const best=aiPickOffensive(avail,ai);
@@ -1172,12 +1371,10 @@ function aiStep(depth){
         aiPlayAction(best,()=>{
           updateMatchUI();
           if(checkEnd())return;
-          // Après un tir, balle change → fin du tour IA
-          // (si resolvePlayerBlock était async, il finira lui-même)
           if(!MS.aiHasBall) setTimeout(finishAiTurn,650);
           else setTimeout(finishAiTurn,500);
         });
-      },720);
+      },delay);
     }else{
       addLog('🤖 Aucune frappe disponible, IA garde la balle.','info');
       setTimeout(finishAiTurn,500);
@@ -1189,13 +1386,10 @@ function aiStep(depth){
         aiPlayAction(best,()=>{
           updateMatchUI();
           if(checkEnd())return;
-          if(MS.aiHasBall){
-            setTimeout(()=>aiStep(depth+1),720);
-          }else{
-            setTimeout(finishAiTurn,550);
-          }
+          if(MS.aiHasBall){ setTimeout(()=>aiStep(depth+1),delay); }
+          else{ setTimeout(finishAiTurn,550); }
         });
-      },720);
+      },delay);
     }else{
       addLog('🤖 L\'IA attend son heure...','info');
       setTimeout(finishAiTurn,450);
@@ -1219,10 +1413,10 @@ function setAiTurn(val){
 
 function aiPlayAction(action, onDone){
   const ai=MS.aiPlayer;
-  const sb=Math.max(0,(ai.stats[action.requiredStat]||70)-action.requiredValue);
-  const rate=Math.min(0.97,(action.successRate+sb*0.3)/100);
+  const rate=aiSuccessRate(action, ai);
   const ok=Math.random()<rate;
   const gap=MS.aiScore-MS.playerScore;
+  const diff=DIFFICULTY[currentDifficulty];
 
   if(['Défense','Ability'].includes(action.type)&&MS.hasBall){
     // ─── DÉFENSE IA vs possession joueur ───
@@ -1284,7 +1478,12 @@ function playerHasBlockingCard(){
     .some(a=>['Défense','Ability'].includes(a.type)&&canUseAction(a,player,MS.cooldowns));
 }
 
-// Le joueur tente automatiquement de bloquer le tir de l'IA
+function resolvePlayerBlock(shotAction, ai, gap, onDone){
+  const player=MS.playerCard;
+  const defCards=PS.deck
+    .filter(id=>id!==PS.selectedPlayer)
+    .map(id=>CARDS.actions.find(a=>a.id===id))
+    .filter(a=>a&&['Défense','Ability'].includes(a.type)&&canUseAction(a,player,MS.cooldowns));
 
   const blocker=defCards.sort((a,b)=>{
     const sbA=Math.max(0,(player.stats[a.requiredStat]||70)-a.requiredValue);
@@ -1292,37 +1491,45 @@ function playerHasBlockingCard(){
     return (b.successRate+sbB*0.3)-(a.successRate+sbA*0.3);
   })[0];
 
-  const sbBlock=Math.max(0,(player.stats[blocker.requiredStat]||70)-blocker.requiredValue);
-  const blockRate=Math.min(0.93,(blocker.successRate+sbBlock*0.3)/100);
-  const blocked=Math.random()<blockRate;
-  const playerBlockCD = defCooldown(player); // CD dynamique selon stats def du joueur
+  const playerBlockCD = defCooldown(player);
 
-  setTimeout(()=>{
-    if(blocked){
-      addLog(`🛡️ ${blocker.emoji} ${blocker.name} — TU BLOQUES LE TIR! Bien joué!`,'success');
-      flashGif('Défense',true);
-      AUDIO.play('block');
+  // Afficher la jauge — le joueur doit stopper dans le vert pour bloquer
+  showTimingForShot(`🛡️ ${blocker.name} — BLOQUE LE TIR!`, true,
+    ()=>{ // Timing réussi → tentative de bloc
+      const sbBlock=Math.max(0,(player.stats[blocker.requiredStat]||70)-blocker.requiredValue);
+      const blockRate=Math.min(0.93,(blocker.successRate+sbBlock*0.3)/100);
+      const blocked=Math.random()<blockRate;
+      setTimeout(()=>{
+        if(blocked){
+          addLog(`🛡️ ${blocker.emoji} ${blocker.name} — TU BLOQUES LE TIR! Bien joué!`,'success');
+          flashGif('Défense',true); AUDIO.play('block');
+          MS.aiHasBall=false; MS.hasBall=true;
+        }else{
+          const exclaims=gap<0?["🤖🔥 COMEBACK!","🤖👑 Trop fort!"]:["🤖🔥 IMPARABLE!","🤖💥 Dans le panier!"];
+          addLog(`${exclaims[MS.turnCount%exclaims.length]} ${blocker.emoji} Contre raté — IA +${shotAction.points}pts!`,'score');
+          MS.aiScore+=shotAction.points; animScore('match-ai-score',MS.aiScore);
+          flashGif(shotAction.type,true); AUDIO.play('score');
+          MS.aiHasBall=false; MS.hasBall=true;
+        }
+        MS.cooldowns[blocker.id]=playerBlockCD;
+        if(shotAction.cooldown>0)MS.aiCooldowns[shotAction.id]=shotAction.cooldown;
+        buildMatchDeck(); updateMatchUI();
+        if(checkEnd())return;
+        setTimeout(()=>{ if(onDone)onDone(); else finishAiTurn(); },500);
+      },600);
+    },
+    ()=>{ // Timing raté → tir rentre sans résistance
+      addLog(`⏱️ Trop lent! ${shotAction.emoji} — IA +${shotAction.points}pts!`,'score');
+      MS.aiScore+=shotAction.points; animScore('match-ai-score',MS.aiScore);
+      flashGif(shotAction.type,true); AUDIO.play('score');
       MS.aiHasBall=false; MS.hasBall=true;
       MS.cooldowns[blocker.id]=playerBlockCD;
       if(shotAction.cooldown>0)MS.aiCooldowns[shotAction.id]=shotAction.cooldown;
       buildMatchDeck(); updateMatchUI();
       if(checkEnd())return;
-      setTimeout(()=>{ if(onDone)onDone(); else finishAiTurn(); }, 500);
-    }else{
-      const exclaims=gap<0?["🤖🔥 COMEBACK!","🤖👑 Trop fort!"]:["🤖🔥 IMPARABLE!","🤖💥 Dans le panier!"];
-      addLog(`${exclaims[MS.turnCount%exclaims.length]} ${blocker.emoji} Contre raté — IA +${shotAction.points}pts!`,'score');
-      MS.aiScore+=shotAction.points;
-      animScore('match-ai-score',MS.aiScore);
-      flashGif(shotAction.type,true);
-      AUDIO.play('score');
-      MS.aiHasBall=false; MS.hasBall=true;
-      MS.cooldowns[blocker.id]=playerBlockCD;
-      if(shotAction.cooldown>0)MS.aiCooldowns[shotAction.id]=shotAction.cooldown;
-      buildMatchDeck(); updateMatchUI();
-      if(checkEnd())return;
-      setTimeout(()=>{ if(onDone)onDone(); else finishAiTurn(); }, 500);
+      setTimeout(()=>{ if(onDone)onDone(); else finishAiTurn(); },400);
     }
-  },900);
+  );
 }
 
 function decCDs(cds){Object.keys(cds).forEach(id=>{cds[id]--;if(cds[id]<=0)delete cds[id];});}
@@ -1360,15 +1567,544 @@ function animScore(id,val){
   el.classList.add('score-flash');
 }
 
-function flashGif(type,ok){
-  document.getElementById('match-gif').src=randomGif(type);
-  const ov=document.getElementById('match-gif-overlay');
-  ov.className='match-gif-overlay '+(ok?'overlay-success':'overlay-fail');
-  setTimeout(()=>{ov.className='match-gif-overlay';},900);
+/* ═══════════════════════════════════════════════
+   CANVAS ANIMATION ENGINE
+   ═══════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════
+   CANVAS ANIMATION ENGINE v2
+   ═══════════════════════════════════════════════ */
+const ANIM = {
+  raf: null,
+  t: 0,
+  duration: 130,
+  type: 'idle',
+  ok: true,
+  playerImg: new Image(),
+  aiImg: new Image(),
+  running: false,
+  particles: [],
+
+  init(playerSrc, aiSrc) {
+    this.playerImg = new Image();
+    this.aiImg     = new Image();
+    this.playerImg.src = playerSrc;
+    this.aiImg.src     = aiSrc;
+    this.particles = [];
+    // Start idle loop
+    this.type = 'idle'; this.t = 0; this.running = true;
+    if (this.raf) cancelAnimationFrame(this.raf);
+    this._loop();
+  },
+
+  play(type, ok) {
+    this.type = type;
+    this.ok   = ok;
+    this.t    = 0;
+    this.particles = [];
+    this.running = true;
+    this.duration = (type === 'idle') ? 9999 : 130;
+    if (this.raf) cancelAnimationFrame(this.raf);
+    this._loop();
+  },
+
+  _loop() {
+    const cvs = document.getElementById('match-canvas');
+    if (!cvs) return;
+    const ctx = cvs.getContext('2d');
+    this._drawScene(ctx, cvs.width, cvs.height);
+    this.t++;
+    if (this.t < this.duration) {
+      this.raf = requestAnimationFrame(() => this._loop());
+    } else {
+      this.running = false;
+      // Return to idle
+      this.play('idle', true);
+    }
+  },
+
+  _spawnParticles(x, y, color, count) {
+    for (let i = 0; i < count; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = 1.5 + Math.random() * 3;
+      this.particles.push({
+        x, y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed - 2,
+        life: 1,
+        color,
+        r: 2 + Math.random() * 3
+      });
+    }
+  },
+
+  _drawScene(ctx, W, H) {
+    const t = this.t, type = this.type, ok = this.ok;
+
+    // ── Background court ──
+    const bg = ctx.createLinearGradient(0, 0, 0, H);
+    bg.addColorStop(0, '#0d0d1a');
+    bg.addColorStop(1, '#12122a');
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, W, H);
+
+    // Floor
+    ctx.fillStyle = '#1a1408';
+    ctx.fillRect(0, H*0.72, W, H);
+    ctx.strokeStyle = 'rgba(255,140,0,0.12)';
+    ctx.lineWidth = 1;
+    // Parquet lines
+    for (let i = 0; i < 12; i++) {
+      ctx.beginPath(); ctx.moveTo(i*(W/11), H*0.72); ctx.lineTo(i*(W/11), H); ctx.stroke();
+    }
+
+    // Court markings
+    ctx.strokeStyle = 'rgba(255,107,0,0.18)';
+    ctx.lineWidth = 1.2;
+    ctx.beginPath(); ctx.moveTo(W/2, 5); ctx.lineTo(W/2, H*0.72); ctx.stroke();
+    ctx.beginPath(); ctx.arc(W/2, H*0.5, 28, 0, Math.PI*2); ctx.stroke();
+    ctx.beginPath(); ctx.arc(55, H*0.5, 42, -Math.PI*0.55, Math.PI*0.55); ctx.stroke();
+    ctx.beginPath(); ctx.arc(W-55, H*0.5, 42, Math.PI*0.45, -Math.PI*0.45); ctx.stroke();
+
+    // ── Hoops ──
+    this._drawHoop(ctx, 16, H*0.5, false);
+    this._drawHoop(ctx, W-16, H*0.5, true);
+
+    // ── Compute anim state ──
+    const prog = Math.min(1, t / 130);
+    const easeOut  = p => 1 - Math.pow(1-p, 3);
+    const easeInOut = p => p < 0.5 ? 4*p*p*p : 1 - Math.pow(-2*p+2, 3)/2;
+    const ep = easeInOut(prog);
+
+    let pX = 88, aX = W - 88;
+    const pY = H*0.5, aY = H*0.5;
+    let pBounce = 0, aBounce = 0;
+    let pScale = 1, aScale = 1;
+    let pTilt = 0, aTilt = 0;
+    let ballX = W/2, ballY = H*0.5, ballR = 9, ballRot = 0;
+    let flashColor = '';
+    let resultLabel = '';
+
+    // ── IDLE — gentle float ──
+    if (type === 'idle') {
+      const s = Math.sin(t * 0.06);
+      ballX = W/2 + Math.sin(t*0.04)*8;
+      ballY = H*0.5 - 4 - Math.abs(s)*6;
+      ballRot = t * 0.018;
+      pBounce = Math.sin(t*0.07)*4;
+      aBounce = Math.sin(t*0.08+1)*4;
+      pTilt   = Math.sin(t*0.05)*0.06;
+      aTilt   = Math.sin(t*0.05+1)*0.06;
+    }
+
+    // ── DUNK — spectaculaire ──
+    else if (type === 'Dunk') {
+      const attackerIsPlayer = ok; // si ok => joueur a mis le dunk
+      if (attackerIsPlayer) {
+        // Phase 1 (0→0.45): joueur court vers le panier droit
+        // Phase 2 (0.45→0.65): saut géant, élévation max
+        // Phase 3 (0.65→0.8): smash — balle dans le cercle
+        // Phase 4 (0.8→1): retombe, flash
+        const runProg   = Math.min(1, prog / 0.45);
+        const jumpProg  = prog > 0.45 ? Math.min(1, (prog-0.45)/0.2) : 0;
+        const smashProg = prog > 0.65 ? Math.min(1, (prog-0.65)/0.15) : 0;
+        const landProg  = prog > 0.8  ? Math.min(1, (prog-0.8)/0.2) : 0;
+
+        pX = 88 + easeOut(runProg) * 65;
+        const jumpH = Math.sin(jumpProg * Math.PI) * 52;
+        pBounce = -jumpH;
+        pScale  = 1 + Math.sin(jumpProg * Math.PI) * 0.45;
+        pTilt   = -jumpProg * 0.4 + landProg * 0.4;
+
+        // Balle collée au joueur puis slam dans le cercle
+        if (smashProg < 0.5) {
+          ballX = pX + 14 * pScale;
+          ballY = pY + pBounce - 8;
+        } else {
+          const sp = (smashProg - 0.5) / 0.5;
+          ballX = pX + 14 + sp * (W-18 - pX - 14);
+          ballY = (pY + pBounce - 8) + sp * (H*0.5 + 5 - (pY + pBounce - 8));
+        }
+        ballRot = prog * Math.PI * 8;
+        ballR   = 9 + Math.sin(jumpProg * Math.PI) * 3;
+
+        if (smashProg > 0.8) {
+          flashColor = 'rgba(255,107,0,0.35)';
+          if (smashProg > 0.9 && this.particles.length < 25)
+            this._spawnParticles(W-18, H*0.5, '#FF6B00', 12);
+        }
+        if (landProg > 0.3) resultLabel = '💥 DUNK! 🔥';
+        // IA recule sous l'impact
+        aX = W-88 + Math.sin(smashProg * Math.PI) * 12;
+        aBounce = Math.sin(smashProg * Math.PI) * 8;
+
+      } else {
+        // IA dunk (miroir)
+        const runProg   = Math.min(1, prog / 0.45);
+        const jumpProg  = prog > 0.45 ? Math.min(1, (prog-0.45)/0.2) : 0;
+        const smashProg = prog > 0.65 ? Math.min(1, (prog-0.65)/0.15) : 0;
+        const landProg  = prog > 0.8  ? Math.min(1, (prog-0.8)/0.2) : 0;
+
+        aX = W-88 - easeOut(runProg) * 65;
+        const jumpH = Math.sin(jumpProg * Math.PI) * 52;
+        aBounce = -jumpH;
+        aScale  = 1 + Math.sin(jumpProg * Math.PI) * 0.45;
+        aTilt   = jumpProg * 0.4 - landProg * 0.4;
+
+        if (smashProg < 0.5) {
+          ballX = aX - 14 * aScale;
+          ballY = aY + aBounce - 8;
+        } else {
+          const sp = (smashProg - 0.5) / 0.5;
+          ballX = aX - 14 - sp * (aX - 14 - 18);
+          ballY = (aY + aBounce - 8) + sp * (H*0.5 + 5 - (aY + aBounce - 8));
+        }
+        ballRot = -prog * Math.PI * 8;
+        ballR   = 9 + Math.sin(jumpProg * Math.PI) * 3;
+
+        if (smashProg > 0.8) {
+          flashColor = 'rgba(80,80,255,0.3)';
+          if (smashProg > 0.9 && this.particles.length < 25)
+            this._spawnParticles(18, H*0.5, '#4488ff', 12);
+        }
+        if (landProg > 0.3) resultLabel = '🤖 DUNK IA!';
+        pX = 88 - Math.sin(smashProg * Math.PI) * 12;
+        pBounce = Math.sin(smashProg * Math.PI) * 8;
+      }
+    }
+
+    // ── TIR — arc haut et long ──
+    else if (type === 'Tir' || type === 'Superpower') {
+      const shooterIsPlayer = ok;
+      if (shooterIsPlayer) {
+        // Joueur recule légèrement et tire — arc très haut
+        pX = 88 - Math.sin(prog * Math.PI * 2) * 8;
+        pBounce = -Math.abs(Math.sin(prog * Math.PI * 2)) * 14;
+        pTilt   = -0.3 + Math.sin(prog * Math.PI) * 0.5;
+        pScale  = 1 + Math.sin(prog * Math.PI * 0.5) * 0.15;
+
+        const arcProg = Math.min(1, prog * 1.3);
+        const startX = 88, endX = W-18;
+        ballX = startX + easeInOut(arcProg) * (endX - startX);
+        // Arc très haut (monte jusqu'à H*0.05 au sommet)
+        const arcHeight = type === 'Superpower' ? H*0.85 : H*0.72;
+        ballY = H*0.5 - Math.sin(arcProg * Math.PI) * arcHeight;
+        ballRot = arcProg * Math.PI * 9;
+        ballR = 9 - Math.sin(arcProg * Math.PI) * 2; // perspective: plus petite en hauteur
+
+        if (arcProg > 0.88) {
+          flashColor = 'rgba(255,107,0,0.28)';
+          if (arcProg > 0.93 && this.particles.length < 20)
+            this._spawnParticles(W-18, H*0.5, '#ffcc00', 10);
+        }
+        if (prog > 0.75) resultLabel = ok ? '🎯 TIIIR! +3' : '💨 RATÉ!';
+        aBounce = Math.sin(prog * Math.PI * 3) * 6; // IA observe
+      } else {
+        aX = W-88 + Math.sin(prog * Math.PI * 2) * 8;
+        aBounce = -Math.abs(Math.sin(prog * Math.PI * 2)) * 14;
+        aTilt   = 0.3 - Math.sin(prog * Math.PI) * 0.5;
+        aScale  = 1 + Math.sin(prog * Math.PI * 0.5) * 0.15;
+
+        const arcProg = Math.min(1, prog * 1.3);
+        const startX = W-88, endX = 18;
+        ballX = startX + easeInOut(arcProg) * (endX - startX);
+        const arcHeight = type === 'Superpower' ? H*0.85 : H*0.72;
+        ballY = H*0.5 - Math.sin(arcProg * Math.PI) * arcHeight;
+        ballRot = -arcProg * Math.PI * 9;
+        ballR = 9 - Math.sin(arcProg * Math.PI) * 2;
+
+        if (arcProg > 0.88) {
+          flashColor = 'rgba(80,80,255,0.25)';
+          if (arcProg > 0.93 && this.particles.length < 20)
+            this._spawnParticles(18, H*0.5, '#4488ff', 10);
+        }
+        if (prog > 0.75) resultLabel = ok ? '🤖 TIR IA +3' : '💨 RATÉ!';
+        pBounce = Math.sin(prog * Math.PI * 3) * 6;
+      }
+    }
+
+    // ── DÉFENSE / VOL — pick-pocket ──
+    else if (type === 'Défense') {
+      if (ok) {
+        // Vol réussi — défenseur plonge, chipe la balle, la récupère
+        if (isAiTurn) {
+          // IA vole la balle du joueur
+          // Phase 1: IA fonce vers joueur
+          const lunge = easeOut(Math.min(1, prog/0.4)) * 55;
+          aX = W-88 - lunge;
+          // Phase 2: balle arrachée, joueur recule
+          const steal = prog > 0.35 ? easeOut(Math.min(1,(prog-0.35)/0.3)) : 0;
+          ballX = 88 + steal * (W-88 - 88) * 0.5; // balle part vers l'IA
+          ballY = H*0.5 - steal * 18;
+          ballRot = prog * Math.PI * 5;
+          pBounce = steal > 0.3 ? Math.sin((steal-0.3)/0.7 * Math.PI) * 20 : 0; // joueur recule
+          pScale  = 1 - steal * 0.1;
+          aTilt   = -0.3 + steal * 0.5;
+          if (steal > 0.6) {
+            flashColor = 'rgba(255,0,80,0.25)';
+            if (this.particles.length < 15) this._spawnParticles(ballX, ballY, '#ff4444', 6);
+          }
+          if (prog > 0.8) resultLabel = '🤖🔒 STEAL!';
+        } else {
+          // Joueur vole la balle de l'IA
+          const lunge = easeOut(Math.min(1, prog/0.4)) * 55;
+          pX = 88 + lunge;
+          const steal = prog > 0.35 ? easeOut(Math.min(1,(prog-0.35)/0.3)) : 0;
+          ballX = W-88 - steal * (W-88 - 88) * 0.5;
+          ballY = H*0.5 - steal * 18;
+          ballRot = -prog * Math.PI * 5;
+          aBounce = steal > 0.3 ? Math.sin((steal-0.3)/0.7 * Math.PI) * 20 : 0;
+          aScale  = 1 - steal * 0.1;
+          pTilt   = 0.3 - steal * 0.5;
+          if (steal > 0.6) {
+            flashColor = 'rgba(0,200,100,0.25)';
+            if (this.particles.length < 15) this._spawnParticles(ballX, ballY, '#00ff88', 6);
+          }
+          if (prog > 0.8) resultLabel = '🔒 STEAL!';
+        }
+      } else {
+        // Défense ratée — tentative et recul
+        const lunge = Math.sin(prog * Math.PI * 1.5) * 22;
+        if (isAiTurn) {
+          aX = W-88 - lunge;
+        } else {
+          pX = 88 + lunge;
+        }
+        ballX = W/2 + Math.sin(prog * Math.PI * 7) * 5;
+        ballY = H*0.5;
+        if (prog > 0.7) resultLabel = '❌ RATÉ!';
+      }
+    }
+
+    // ── ABILITY / FEINTE ──
+    else if (type === 'Ability') {
+      // Feinte : joueur fait un mouvement trompeur (side-step), l'adversaire réagit
+      const fakeIsPlayer = !isAiTurn;
+      if (fakeIsPlayer) {
+        // Joueur feinte à gauche puis part à droite
+        const fake  = Math.sin(prog * Math.PI * 2) * 22; // oscillation
+        const dash  = prog > 0.5 ? easeOut((prog-0.5)/0.5) * 30 : 0;
+        pX = 88 + fake + dash;
+        pTilt = Math.cos(prog * Math.PI * 2) * 0.25;
+        pScale = 1 + Math.abs(Math.sin(prog * Math.PI * 2)) * 0.1;
+        // IA tombe dans la feinte
+        aX = W-88 + Math.sin(prog * Math.PI * 2 + 0.5) * 14;
+        aBounce = Math.abs(Math.sin(prog * Math.PI * 3)) * 8;
+        ballX = pX + 12;
+        ballY = H*0.5 - 5 + Math.sin(prog * Math.PI * 4) * 8;
+        ballRot = prog * Math.PI * 6;
+        if (prog > 0.7) {
+          flashColor = 'rgba(180,0,255,0.15)';
+          resultLabel = '🎭 FEINTE!';
+        }
+      } else {
+        // IA feinte
+        const fake = Math.sin(prog * Math.PI * 2) * 22;
+        const dash = prog > 0.5 ? easeOut((prog-0.5)/0.5) * 30 : 0;
+        aX = W-88 - fake - dash;
+        aTilt = -Math.cos(prog * Math.PI * 2) * 0.25;
+        aScale = 1 + Math.abs(Math.sin(prog * Math.PI * 2)) * 0.1;
+        pX = 88 - Math.sin(prog * Math.PI * 2 + 0.5) * 14;
+        pBounce = Math.abs(Math.sin(prog * Math.PI * 3)) * 8;
+        ballX = aX - 12;
+        ballY = H*0.5 - 5 + Math.sin(prog * Math.PI * 4) * 8;
+        ballRot = -prog * Math.PI * 6;
+        if (prog > 0.7) {
+          flashColor = 'rgba(180,0,255,0.15)';
+          resultLabel = '🤖 FEINTE!';
+        }
+      }
+    }
+
+    // ── PASSE ──
+    else if (type === 'Passe') {
+      // Passe rapide — balle file en ligne droite avec légère courbe
+      const sp = easeInOut(Math.min(1, prog * 1.2));
+      ballX = 88 + sp * (W-88-88);
+      ballY = H*0.5 - Math.sin(sp * Math.PI) * 20;
+      ballRot = prog * Math.PI * 5;
+      pBounce = -Math.sin(prog * Math.PI) * 12;
+      pTilt   = -0.2 + prog * 0.3;
+      aBounce = prog > 0.7 ? -Math.sin((prog-0.7)/0.3 * Math.PI) * 10 : 0;
+      resultLabel = prog > 0.75 ? '📤 PASSE!' : '';
+    }
+
+    // ── Flash overlay ──
+    if (flashColor) {
+      ctx.fillStyle = flashColor;
+      ctx.fillRect(0, 0, W, H);
+    }
+
+    // ── Particles ──
+    this.particles = this.particles.filter(p => p.life > 0);
+    for (const p of this.particles) {
+      ctx.globalAlpha = p.life;
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r * p.life, 0, Math.PI*2);
+      ctx.fill();
+      p.x += p.vx; p.y += p.vy; p.vy += 0.18; p.life -= 0.045;
+    }
+    ctx.globalAlpha = 1;
+
+    // ── Draw players ──
+    this._drawPlayer(ctx, pX, pY + pBounce, pScale, false, pTilt);
+    this._drawPlayer(ctx, aX, aY + aBounce, aScale, true,  aTilt);
+
+    // ── Ball ──
+    this._drawBall(ctx, ballX, ballY, ballR, ballRot);
+
+    // ── Result label ──
+    if (resultLabel && prog > 0.6) {
+      const alpha = Math.sin(Math.min(1,(prog-0.6)/0.4) * Math.PI);
+      ctx.globalAlpha = alpha;
+      ctx.font = 'bold 22px "Bebas Neue", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillStyle = ok ? '#FF6B00' : '#ff4466';
+      // Glow
+      ctx.shadowColor = ok ? '#FF6B00' : '#ff0044';
+      ctx.shadowBlur = 12;
+      ctx.fillText(resultLabel, W/2, H*0.22);
+      ctx.shadowBlur = 0;
+      ctx.globalAlpha = 1;
+    }
+  },
+
+  _drawHoop(ctx, x, y, flip) {
+    ctx.save();
+    const side = flip ? -1 : 1;
+    // Backboard pole
+    ctx.strokeStyle = 'rgba(255,255,255,0.5)';
+    ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(x, y+22); ctx.lineTo(x, y+40); ctx.stroke();
+    // Backboard
+    ctx.fillStyle = 'rgba(200,220,255,0.75)';
+    ctx.fillRect(x - 3, y - 20, 5, 32);
+    ctx.strokeStyle = 'rgba(255,255,255,0.4)';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(x - 3, y - 20, 5, 32);
+    // Rim support
+    ctx.strokeStyle = '#cc4400';
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(x, y+2); ctx.lineTo(x + side*12, y+2); ctx.stroke();
+    // Rim
+    ctx.strokeStyle = '#FF6B00';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.arc(x + side*12, y+4, 11, 0, Math.PI*2);
+    ctx.stroke();
+    // Net
+    ctx.strokeStyle = 'rgba(255,255,255,0.5)';
+    ctx.lineWidth = 1;
+    for (let i = 0; i < 6; i++) {
+      const nx = x + side*12 - 9 + i*3.6;
+      ctx.beginPath();
+      ctx.moveTo(nx, y+4);
+      ctx.quadraticCurveTo(nx + side*1.5, y+12, nx + side*0.5, y+20);
+      ctx.stroke();
+    }
+    ctx.restore();
+  },
+
+  _drawPlayer(ctx, x, y, scale, isAi, tilt = 0) {
+    const img  = isAi ? this.aiImg : this.playerImg;
+    const SIZE = 52 * scale;
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(tilt);
+    if (isAi) ctx.scale(-1, 1);
+
+    // Shadow
+    ctx.fillStyle = 'rgba(0,0,0,0.35)';
+    ctx.beginPath();
+    ctx.ellipse(0, SIZE/2 + 4, SIZE*0.38, 5, 0, 0, Math.PI*2);
+    ctx.fill();
+
+    // Glow ring
+    const glowColor = isAi ? '#4488ff' : '#FF6B00';
+    ctx.shadowColor = glowColor;
+    ctx.shadowBlur  = 10 * scale;
+
+    // Image clip
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(0, 0, SIZE/2, 0, Math.PI*2);
+    ctx.clip();
+    if (img.complete && img.naturalWidth > 0) {
+      ctx.drawImage(img, -SIZE/2, -SIZE/2, SIZE, SIZE);
+    } else {
+      ctx.fillStyle = isAi ? '#1a2266' : '#661100';
+      ctx.fillRect(-SIZE/2, -SIZE/2, SIZE, SIZE);
+      ctx.fillStyle = '#fff';
+      ctx.font = `bold ${SIZE*0.4}px sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.fillText(isAi ? 'IA' : 'P', 0, SIZE*0.15);
+    }
+    ctx.restore();
+
+    ctx.strokeStyle = glowColor;
+    ctx.lineWidth   = 2.5;
+    ctx.beginPath();
+    ctx.arc(0, 0, SIZE/2, 0, Math.PI*2);
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    ctx.restore();
+  },
+
+  _drawBall(ctx, x, y, r, rot) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(rot);
+
+    // Shadow
+    ctx.fillStyle = 'rgba(0,0,0,0.25)';
+    ctx.beginPath();
+    ctx.ellipse(0, r+3, r*0.7, 3.5, 0, 0, Math.PI*2);
+    ctx.fill();
+
+    // Body
+    const g = ctx.createRadialGradient(-r*0.35, -r*0.35, r*0.05, 0, 0, r);
+    g.addColorStop(0, '#ffaa55');
+    g.addColorStop(0.6, '#ff6600');
+    g.addColorStop(1,   '#aa2200');
+    ctx.fillStyle = g;
+    ctx.shadowColor = 'rgba(255,100,0,0.6)';
+    ctx.shadowBlur  = 6;
+    ctx.beginPath(); ctx.arc(0, 0, r, 0, Math.PI*2); ctx.fill();
+    ctx.shadowBlur = 0;
+
+    // Seams
+    ctx.strokeStyle = 'rgba(0,0,0,0.55)';
+    ctx.lineWidth = 1.3;
+    ctx.beginPath(); ctx.moveTo(-r, 0); ctx.lineTo(r, 0); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0, -r); ctx.lineTo(0, r); ctx.stroke();
+    ctx.beginPath(); ctx.arc(0, 0, r*0.58, -Math.PI*0.5, Math.PI*0.5); ctx.stroke();
+    ctx.beginPath(); ctx.arc(0, 0, r*0.58,  Math.PI*0.5, -Math.PI*0.5); ctx.stroke();
+
+    ctx.restore();
+  }
+};
+
+function flashGif(type, ok) {
+  ANIM.play(type, ok);
+}
+
+/* ── Pause menu ── */
+function openPause() {
+  document.getElementById('pause-modal').style.display = 'flex';
+}
+function closePause() {
+  document.getElementById('pause-modal').style.display = 'none';
+}
+function pauseQuit() {
+  closePause();
+  if (ANIM.raf) cancelAnimationFrame(ANIM.raf);
+  showScreen('screen-play-menu');
 }
 
 function checkEnd(){
-  if(MS.playerScore>=21||MS.aiScore>=21){setTimeout(showMatchEnd,600);return true;}
+  const win=PS.winScore||21;
+  if(MS.playerScore>=win||MS.aiScore>=win){setTimeout(showMatchEnd,600);return true;}
   return false;
 }
 
@@ -1485,44 +2221,135 @@ document.addEventListener('click', e=>{
   if(e.target.tagName==='BUTTON') AUDIO.play('click');
 });
 
+// ═══════════════════════════════════════════
+const TG = {
+  active: false,
+  raf: null,
+  pos: 0,        // 0..100 cursor position
+  dir: 1,        // bounce direction
+  speed: 0,      // px/frame
+  greenStart: 0, // 0..100
+  greenEnd: 0,
+  onSuccess: null,
+  onFail: null,
+
+  show(label, greenSize, speed, onSuccess, onFail){
+    // greenSize = how wide the green zone is (15–40)
+    // speed = 0.8 (slow) to 2.5 (fast)
+    this.active = true;
+    this.pos = 0;
+    this.dir = 1;
+    this.speed = speed;
+    this.onSuccess = onSuccess;
+    this.onFail = onFail;
+
+    // Random green zone position
+    const margin = 5;
+    this.greenStart = margin + Math.random() * (100 - greenSize - margin*2);
+    this.greenEnd = this.greenStart + greenSize;
+
+    // Update DOM
+    const overlay = document.getElementById('timing-gauge-overlay');
+    overlay.classList.remove('hidden');
+    document.getElementById('timing-gauge-label').textContent = label;
+    const green = document.getElementById('timing-gauge-green');
+    green.style.left = this.greenStart + '%';
+    green.style.width = greenSize + '%';
+
+    this._animate();
+  },
+
+  _animate(){
+    if(!this.active) return;
+    this.pos += this.speed * this.dir;
+    if(this.pos >= 100){ this.pos = 100; this.dir = -1; }
+    if(this.pos <= 0)  { this.pos = 0;   this.dir = 1;  }
+    document.getElementById('timing-gauge-cursor').style.left = this.pos + '%';
+    this.raf = requestAnimationFrame(()=>this._animate());
+  },
+
+  hide(){
+    this.active = false;
+    cancelAnimationFrame(this.raf);
+    document.getElementById('timing-gauge-overlay').classList.add('hidden');
+  }
+};
+
+function timingStop(){
+  if(!TG.active) return;
+  const pos = TG.pos;
+  const success = pos >= TG.greenStart && pos <= TG.greenEnd;
+  TG.hide();
+  if(success){ AUDIO.play('score'); TG.onSuccess && TG.onSuccess(); }
+  else        { AUDIO.play('fail');  TG.onFail    && TG.onFail();    }
+}
+
+// Helper: wrap a shot with timing gauge
+// type: 'attack' (joueur tire) or 'defend' (joueur contre)
+function showTimingForShot(label, isDefense, onSuccess, onFail){
+  // Défense = zone verte plus petite et plus rapide
+  const greenSize = isDefense ? 18 : 25;
+  const speed     = isDefense ? 1.8 : 1.3;
+  TG.show(label, greenSize, speed, onSuccess, onFail);
+}
+
 AUDIO.init();
 
 // ═══════════════════════════════════════════
-// P2P ENGINE — PeerJS WebRTC
-// ═══════════════════════════════════════════
-let peer = null;       // notre Peer local
-let p2pConn = null;    // connexion DataChannel active
-let p2pIsHost = false; // sommes-nous le créateur ?
-let p2pReady = false;  // les deux joueurs sont prêts ?
+// ═══════════════════════════════════════════════
+// P2P ENGINE v2 — PeerJS WebRTC
+// ═══════════════════════════════════════════════
+let peer       = null;
+let p2pConn    = null;
+let p2pIsHost  = false;
+let myTurn     = false;   // c'est mon tour de jeu ?
 
-// État P2P du match (synchronisé)
-let p2pMS = null;      // match state partagé
-let myTurn = false;    // est-ce mon tour ?
+let p2pOpponent = null;
 
+/* ── Helpers UI ── */
 function p2pLog(msg, cls=''){
   const el=document.getElementById('p2p-log');
-  if(!el)return;
+  if(!el) return;
   const s=document.createElement('span');
   s.className=cls; s.textContent=msg;
   el.appendChild(s);
   el.scrollTop=el.scrollHeight;
 }
-
 function p2pSetStatus(txt, color='var(--gray)'){
   const el=document.getElementById('p2p-status-badge');
   if(el){el.textContent=txt; el.style.color=color;}
 }
-
 function p2pUpdatePlayerList(them){
   const list=document.getElementById('p2p-players-list');
-  if(!list)return;
+  if(!list) return;
   const me=CARDS.players.find(x=>x.id===PS.selectedPlayer)||CARDS.players[0];
-  let html=`<div class="p2p-player-row"><span class="p2p-player-avatar">🏀</span><span class="p2p-player-name">${PS.pseudo||'Toi'} (moi)</span><span class="p2p-player-team">${me.name}</span></div>`;
-  if(them) html+=`<div class="p2p-player-row"><span class="p2p-player-avatar">🤖</span><span class="p2p-player-name">${them.pseudo}</span><span class="p2p-player-team">${them.playerName}</span></div>`;
+  let html=`<div class="p2p-player-row">
+    <span class="p2p-player-avatar">🏀</span>
+    <span class="p2p-player-name">${PS.pseudo||'Toi'} <small style="opacity:.5">(moi)</small></span>
+    <span class="p2p-player-team">${me.name}</span>
+  </div>`;
+  if(them) html+=`<div class="p2p-player-row">
+    <span class="p2p-player-avatar">🎮</span>
+    <span class="p2p-player-name">${them.pseudo||'Adversaire'}</span>
+    <span class="p2p-player-team">${them.playerName||'?'}</span>
+  </div>`;
   list.innerHTML=html;
 }
 
-// ── CRÉER UNE SALLE ──
+/* ── Destroy helper ── */
+function p2pDestroy(){
+  if(p2pConn){try{p2pConn.close();}catch(e){} p2pConn=null;}
+  if(peer){try{peer.destroy();}catch(e){} peer=null;}
+}
+
+/* ── Send ── */
+function p2pSend(data){
+  if(p2pConn && p2pConn.open) p2pConn.send(data);
+}
+
+/* ── Créer une salle ──
+   On génère un ID court aléatoire de 6 lettres et on crée
+   le Peer AVEC cet ID — ainsi l'adversaire peut s'y connecter directement. */
 function createP2PRoom(){
   showScreen('screen-p2p');
   document.getElementById('p2p-title').textContent='CRÉER UNE SALLE';
@@ -1530,35 +2357,48 @@ function createP2PRoom(){
   document.getElementById('p2p-join-form').style.display='none';
   document.getElementById('p2p-start-btn').style.display='none';
   document.getElementById('p2p-log').innerHTML='';
+  document.getElementById('p2p-room-display').textContent='...';
   p2pIsHost=true;
-  p2pSetStatus('🟡 Initialisation...','var(--yellow)');
+  p2pOpponent=null;
+  p2pSetStatus('🟡 Connexion au serveur...','var(--yellow)');
   p2pUpdatePlayerList(null);
+  p2pDestroy();
 
-  // Détruire peer précédent si besoin
-  if(peer){try{peer.destroy();}catch(e){} peer=null;}
+  // ID court = "RB" + 6 chars alphanumériques
+  const roomId = 'RB' + Math.random().toString(36).slice(2,8).toUpperCase();
 
-  peer = new Peer(undefined, {debug:0});
+  peer = new Peer(roomId, {
+    debug: 0,
+    config: {
+      iceServers: [
+        {urls:'stun:stun.l.google.com:19302'},
+        {urls:'stun:stun1.l.google.com:19302'}
+      ]
+    }
+  });
 
   peer.on('open', id=>{
-    const shortId = id.slice(0,8).toUpperCase();
-    peer._shortId = shortId;
-    document.getElementById('p2p-room-display').textContent = shortId;
-    p2pSetStatus('🟢 En attente d\'un adversaire...','var(--green)');
-    p2pLog('Salle créée. Partage le code à ton adversaire.\n','pl');
+    document.getElementById('p2p-room-display').textContent = id;
+    p2pSetStatus('🟢 En attente d\'un adversaire…','var(--green)');
+    p2pLog('✅ Salle créée ! Code : '+id+'\n','pl');
+    p2pLog('Partage ce code à ton adversaire.\n','');
   });
 
   peer.on('connection', conn=>{
-    p2pConn = conn;
+    if(p2pConn){conn.close();return;} // refuser 2e connexion
+    p2pConn=conn;
     p2pSetupConn(conn);
   });
 
   peer.on('error', e=>{
-    p2pSetStatus('🔴 Erreur: '+e.type,'var(--red)');
-    p2pLog('Erreur: '+e.message+'\n','pe');
+    p2pSetStatus('🔴 Erreur : '+e.type,'var(--red)');
+    p2pLog('❌ Erreur : '+e.type+' — '+e.message+'\n','pe');
   });
+
+  peer.on('disconnected', ()=>{ peer.reconnect(); });
 }
 
-// ── REJOINDRE UNE SALLE ──
+/* ── Rejoindre une salle ── */
 function joinP2PRoom(){
   showScreen('screen-p2p');
   document.getElementById('p2p-title').textContent='REJOINDRE';
@@ -1568,257 +2408,268 @@ function joinP2PRoom(){
   document.getElementById('p2p-log').innerHTML='';
   document.getElementById('p2p-room-display').textContent='Entre le code';
   p2pIsHost=false;
+  p2pOpponent=null;
   p2pSetStatus('🔴 Non connecté','var(--gray)');
   p2pUpdatePlayerList(null);
 }
 
 function p2pConnect(){
   const input=document.getElementById('p2p-room-input').value.trim().toUpperCase();
-  if(!input){p2pLog('Entre un code valide.\n','pe');return;}
+  if(input.length < 3){p2pLog('❌ Code invalide.\n','pe');return;}
 
-  p2pSetStatus('🟡 Connexion...','var(--yellow)');
-  p2pLog('Connexion à '+input+'...\n','');
+  p2pSetStatus('🟡 Connexion…','var(--yellow)');
+  p2pLog('🔗 Connexion à '+input+'…\n','');
+  p2pDestroy();
 
-  if(peer){try{peer.destroy();}catch(e){} peer=null;}
-  peer = new Peer(undefined, {debug:0});
+  peer = new Peer(undefined, {
+    debug: 0,
+    config:{
+      iceServers:[
+        {urls:'stun:stun.l.google.com:19302'},
+        {urls:'stun:stun1.l.google.com:19302'}
+      ]
+    }
+  });
 
   peer.on('open', ()=>{
-    // Cherche le peer avec le code court — on essaie les IDs PeerJS
-    // L'hôte a partagé peer._shortId = id.slice(0,8).toUpperCase()
-    // On doit trouver le full ID — workaround: l'hôte envoie son full ID via le code
-    // Solution: on stocke le full ID dans le code affiché
     const conn = peer.connect(input, {reliable:true, serialization:'json'});
     p2pConn = conn;
     p2pSetupConn(conn);
   });
 
   peer.on('error', e=>{
-    p2pSetStatus('🔴 Erreur: '+e.type,'var(--red)');
-    p2pLog('Erreur de connexion: '+e.type+'\n','pe');
+    p2pSetStatus('🔴 Erreur : '+e.type,'var(--red)');
+    p2pLog('❌ '+e.type+'\n','pe');
+    if(e.type==='peer-unavailable') p2pLog('Code introuvable — vérifie le code.\n','pe');
   });
 }
 
 function p2pCopyCode(){
   const id = peer && peer.id ? peer.id : '';
   if(!id){p2pLog('Code pas encore disponible.\n','pe');return;}
-  navigator.clipboard.writeText(id).catch(()=>{
-    // fallback
+  const copy = ()=>{
     const ta=document.createElement('textarea');
     ta.value=id; document.body.appendChild(ta); ta.select();
     document.execCommand('copy'); document.body.removeChild(ta);
-  });
-  document.getElementById('p2p-room-display').textContent=id.slice(0,16)+'...';
-  p2pLog('Code copié dans le presse-papiers!\n','pl');
+  };
+  if(navigator.clipboard) navigator.clipboard.writeText(id).catch(copy);
+  else copy();
+  p2pLog('📋 Code copié : '+id+'\n','pl');
 }
 
+/* ── Setup connexion (commun hôte & guest) ── */
 function p2pSetupConn(conn){
   conn.on('open',()=>{
-    p2pSetStatus('🟢 Connecté!','var(--green)');
-    p2pLog('Connecté!\n','pl');
+    p2pSetStatus('🟢 Connecté !','var(--green)');
+    p2pLog('🤝 Connexion établie !\n','pl');
     AUDIO.play('whistle');
 
-    // Envoyer nos infos
+    // Envoyer nos infos joueur
     const me=CARDS.players.find(x=>x.id===PS.selectedPlayer)||CARDS.players[0];
-    p2pSend({type:'hello', pseudo:PS.pseudo||'Joueur', playerName:me.name, playerId:PS.selectedPlayer, deck:PS.deck});
+    p2pSend({
+      type:'hello',
+      pseudo: PS.pseudo||'Joueur',
+      playerName: me.name,
+      playerId: PS.selectedPlayer,
+      deck: PS.deck
+    });
 
-    // Hôte : affiche le bouton Start
     if(p2pIsHost){
       document.getElementById('p2p-start-btn').style.display='block';
+      p2pLog('⏳ Attente des infos adversaire…\n','');
     }
   });
 
-  conn.on('data', data=>{
-    p2pHandleMessage(data);
-  });
+  conn.on('data', data=>{ p2pHandleMessage(data); });
 
   conn.on('close',()=>{
     p2pSetStatus('🔴 Déconnecté','var(--red)');
-    p2pLog('Connexion perdue.\n','pe');
-    p2pReady=false;
+    p2pLog('⚠️ Connexion perdue.\n','pe');
   });
 
   conn.on('error', e=>{
-    p2pLog('Erreur conn: '+e+'\n','pe');
+    p2pLog('❌ Erreur conn : '+e+'\n','pe');
   });
 }
 
-function p2pSend(data){
-  if(p2pConn && p2pConn.open) p2pConn.send(data);
-}
-
-let p2pOpponent = null; // infos adversaire
-
+/* ── Gestionnaire de messages ── */
 function p2pHandleMessage(data){
   switch(data.type){
 
     case 'hello':
-      p2pOpponent = data;
+      p2pOpponent=data;
       p2pUpdatePlayerList(data);
-      p2pLog(`${data.pseudo} rejoint la salle!\n`,'pl');
-      p2pSend({type:'hello_ack',
-        pseudo:PS.pseudo||'Joueur',
-        playerName:(CARDS.players.find(x=>x.id===PS.selectedPlayer)||CARDS.players[0]).name,
-        playerId:PS.selectedPlayer,
-        deck:PS.deck
+      p2pLog('👋 '+data.pseudo+' a rejoint la salle !\n','pl');
+      // Répondre avec nos infos
+      const me2=CARDS.players.find(x=>x.id===PS.selectedPlayer)||CARDS.players[0];
+      p2pSend({
+        type:'hello_ack',
+        pseudo: PS.pseudo||'Joueur',
+        playerName: me2.name,
+        playerId: PS.selectedPlayer,
+        deck: PS.deck
       });
       break;
 
     case 'hello_ack':
-      p2pOpponent = data;
+      p2pOpponent=data;
       p2pUpdatePlayerList(data);
-      p2pLog(`${data.pseudo} est prêt!\n`,'pl');
+      p2pLog('✅ '+data.pseudo+' est prêt !\n','pl');
       break;
 
     case 'start':
-      // L'hôte envoie l'état initial du match
-      p2pMS = data.matchState;
-      myTurn = !data.hostStarts; // guest joue si host commence
-      p2pStartMatchLocal();
+      // Le guest reçoit le signal de démarrage
+      myTurn = !data.hostStarts; // guest joue si hostStarts=true
+      p2pStartMatchLocal(data.hostHasBall, data.guestHasBall);
       break;
 
     case 'action':
-      // L'adversaire a joué une action
       p2pReceiveAction(data);
       break;
 
     case 'skip':
-      // L'adversaire passe son tour
       p2pReceiveSkip();
-      break;
-
-    case 'sync':
-      // Synchronisation d'état
-      if(data.scores){
-        MS.playerScore = data.scores.guest;
-        MS.aiScore = data.scores.host;
-        updateMatchUI();
-      }
       break;
   }
 }
 
+/* ── Hôte lance le match ── */
 function p2pStartGame(){
-  if(!p2pConn || !p2pConn.open){p2pLog('Pas de connexion active.\n','pe');return;}
-  // Hôte définit qui commence (pile ou face)
+  if(!p2pConn||!p2pConn.open){p2pLog('❌ Pas de connexion active.\n','pe');return;}
+  if(!p2pOpponent){p2pLog('❌ En attente des infos adversaire.\n','pe');return;}
+
   const hostStarts = Math.random()<0.5;
-  myTurn = hostStarts;
+  myTurn = hostStarts; // l'hôte commence ou pas
 
-  const initState = {
-    hostScore:0, guestScore:0,
+  p2pSend({
+    type:'start',
+    hostStarts,
     hostHasBall: hostStarts,
-    guestHasBall: !hostStarts,
-    turnCount:1
-  };
+    guestHasBall: !hostStarts
+  });
 
-  p2pSend({type:'start', matchState:initState, hostStarts});
-  p2pMS = initState;
-  p2pStartMatchLocal();
+  p2pStartMatchLocal(hostStarts, !hostStarts);
 }
 
-function p2pStartMatchLocal(){
-  // Construire le MS pour le match P2P
-  const me = CARDS.players.find(x=>x.id===PS.selectedPlayer)||CARDS.players[0];
+/* ── Démarrer le match local (les deux) ── */
+function p2pStartMatchLocal(iHaveBall, theyHaveBall){
+  const me   = CARDS.players.find(x=>x.id===PS.selectedPlayer)||CARDS.players[0];
   const them = CARDS.players.find(x=>x.id===p2pOpponent?.playerId)||CARDS.players[1];
 
   MS = {
     isP2P: true,
-    playerScore: 0, aiScore: 0,
-    hasBall: myTurn ? p2pMS.hostHasBall : p2pMS.guestHasBall,
-    aiHasBall: myTurn ? p2pMS.guestHasBall : p2pMS.hostHasBall,
+    p2pMode: true,
+    playerScore: 0,
+    aiScore: 0,
+    hasBall:   myTurn ? iHaveBall  : theyHaveBall,
+    aiHasBall: myTurn ? theyHaveBall : iHaveBall,
     turnCount: 1,
-    cooldowns: {}, aiCooldowns: {},
+    cooldowns: {},
+    aiCooldowns: {},
     aiDeck: (p2pOpponent?.deck||[]).map(id=>CARDS.actions.find(a=>a.id===id)).filter(Boolean),
     aiPlayer: them,
-    playerCard: me,
-    p2pMode: true
+    playerCard: me
   };
 
+  // En P2P, isAiTurn = c'est le tour de l'adversaire (pas d'IA locale)
   isAiTurn = !myTurn;
 
+  // UI
   document.getElementById('match-player-name').textContent = PS.pseudo||'Toi';
   document.getElementById('match-player-score').textContent = '0';
-  document.getElementById('match-player-img').innerHTML=`<img src="${me.image}" alt="${me.name}">`;
+  document.getElementById('match-player-img').innerHTML = `<img src="${me.image}" alt="${me.name}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
   document.getElementById('match-ai-name').textContent = p2pOpponent?.pseudo||'Adversaire';
   document.getElementById('match-ai-score').textContent = '0';
-  document.getElementById('match-ai-img').innerHTML=`<img src="${them.image}" alt="${them.name}">`;
-  document.getElementById('match-turn-count').textContent='Tour 1';
-  document.getElementById('match-log').innerHTML=`<div class="log-entry info">🏀 Match P2P! ${MS.hasBall?'Tu commences!':'Adversaire commence!'}</div>`;
-  document.getElementById('end-turn-btn').textContent='⏭️ PASSER';
-  document.getElementById('end-turn-btn').disabled=!myTurn;
+  document.getElementById('match-ai-img').innerHTML = `<img src="${them.image}" alt="${them.name}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+  document.getElementById('match-turn-count').textContent = 'Tour 1';
+  document.getElementById('match-log').innerHTML = `<div class="log-entry info">🏀 Match P2P ! ${myTurn?'À toi de commencer !':'L\'adversaire commence !'}</div>`;
+  document.getElementById('end-turn-btn').disabled = !myTurn;
 
   buildMatchDeck();
   updateMatchUI();
   showScreen('screen-match');
+  ANIM.init(me.image, them.image);
   AUDIO.play('whistle');
 
   if(!myTurn){
-    setAiTurn(true);
-    addLog('⏳ Tour de l\'adversaire...','info');
+    addLog('⏳ En attente de l\'adversaire…','info');
   }
 }
 
+/* ── Recevoir une action adverse ── */
 function p2pReceiveAction(data){
-  // Appliquer l'action de l'adversaire côté local
-  const action = CARDS.actions.find(a=>a.id===data.actionId);
-  if(!action)return;
+  const action=CARDS.actions.find(a=>a.id===data.actionId);
+  if(!action) return;
 
-  const ok = data.ok;
-  const scoringType=['Dunk','Tir','Superpower'].includes(action.type);
+  const ok=data.ok;
+  const isScoring=['Dunk','Tir','Superpower'].includes(action.type);
+  const isDef=['Défense'].includes(action.type);
 
-  if(scoringType){
+  flashGif(action.type, ok);
+
+  if(isScoring){
     if(ok){
-      MS.aiScore+=action.points;
-      addLog(`🤖🔥 ${action.emoji} ${action.name} — +${action.points}pts!`,'score');
-      animScore('match-ai-score',MS.aiScore);
-      flashGif(action.type,true);
+      MS.aiScore += action.points;
+      animScore('match-ai-score', MS.aiScore);
+      addLog(`🤖🔥 ${action.emoji} ${action.name} +${action.points}pts !`,'score');
       AUDIO.play('score');
+      // Après un panier adversaire, la balle revient à moi
       MS.aiHasBall=false; MS.hasBall=true;
-    }else{
-      addLog(`🤖❌ ${action.emoji} ${action.name} — Raté!`,'info');
-      flashGif(action.type,false);
+    } else {
+      addLog(`🤖❌ ${action.emoji} ${action.name} — Raté !`,'info');
       AUDIO.play('fail');
       MS.aiHasBall=false; MS.hasBall=true;
     }
-  }else if(['Défense','Ability'].includes(action.type)){
-    if(ok){
-      MS.aiHasBall=true; MS.hasBall=false;
-      addLog(`🤖✅ ${action.emoji} ${action.name} — Vol de balle!`,'fail');
-      flashGif(action.type,true);
-    }else{
-      addLog(`🤖❌ ${action.emoji} ${action.name} — Raté!`,'info');
-      flashGif(action.type,false);
+  } else if(isDef){
+    if(ok && MS.hasBall){
+      // Adversaire me vole la balle
+      MS.hasBall=false; MS.aiHasBall=true;
+      addLog(`🤖🔒 ${action.emoji} ${action.name} — Vol de balle !`,'fail');
+      AUDIO.play('block');
+    } else {
+      addLog(`🤖❌ ${action.emoji} ${action.name} — Raté !`,'info');
     }
+  } else {
+    // Ability / Passe
+    addLog(`🤖 ${action.emoji} ${action.name}`,'info');
   }
 
   if(action.cooldown>0) MS.aiCooldowns[action.id]=action.cooldown;
-  buildMatchDeck(); updateMatchUI();
+  buildMatchDeck();
+  updateMatchUI();
+  if(checkEnd()) return;
 
-  if(checkEnd())return;
-
-  // C'est maintenant mon tour
+  // Mon tour
   setTimeout(()=>{
     myTurn=true;
-    setAiTurn(false);
-    addLog('🔄 À toi de jouer!','info');
-  },500);
+    isAiTurn=false;
+    document.getElementById('end-turn-btn').disabled=false;
+    buildMatchDeck();
+    addLog('🔄 À toi de jouer !','info');
+  }, 600);
 }
 
+/* ── Recevoir un skip adverse ── */
 function p2pReceiveSkip(){
   addLog('⏭️ Adversaire passe son tour.','info');
   decCDs(MS.aiCooldowns);
   MS.turnCount++;
   document.getElementById('match-turn-count').textContent=`Tour ${MS.turnCount}`;
-  buildMatchDeck(); updateMatchUI();
+
   setTimeout(()=>{
     myTurn=true;
-    setAiTurn(false);
-    addLog('🔄 À toi de jouer!','info');
-  },400);
+    isAiTurn=false;
+    document.getElementById('end-turn-btn').disabled=false;
+    buildMatchDeck();
+    updateMatchUI();
+    addLog('🔄 À toi de jouer !','info');
+  }, 400);
 }
 
+/* ── Quitter ── */
 function p2pLeave(){
-  if(peer){try{peer.destroy();}catch(e){} peer=null;}
-  p2pConn=null; p2pOpponent=null; p2pReady=false;
+  p2pDestroy();
+  p2pOpponent=null;
   showScreen('screen-play-menu');
 }
 
@@ -1860,6 +2711,95 @@ function importData(){
     m.textContent='❌ Format invalide.';m.className='shop-message error';
   }
 }
+
+// ─── SETTINGS FUNCTIONS ───────────────────
+
+function setWinScore(n){
+  PS.winScore = n;
+  save();
+  document.getElementById('win-score-label').innerHTML = `Premier à <b>${n} pts</b> gagne`;
+  document.querySelectorAll('.score-btn').forEach(b=>b.classList.toggle('selected', parseInt(b.textContent)===n));
+}
+
+function setTurnTimer(n){
+  PS.turnTimer = n;
+  save();
+  document.getElementById('turn-timer-label').textContent = n===0 ? 'Pas de limite de temps' : `${n} secondes par tour`;
+  document.querySelectorAll('.score-btn').forEach(b=>{
+    const val = b.textContent==='OFF'?0:parseInt(b.textContent);
+    b.classList.toggle('selected', val===n);
+  });
+}
+
+function toggleGifs(){
+  PS.gifsEnabled = PS.gifsEnabled===false ? true : false;
+  save();
+  const btn=document.getElementById('gif-toggle');
+  btn.textContent = PS.gifsEnabled===false ? 'OFF' : 'ON';
+  btn.classList.toggle('off', PS.gifsEnabled===false);
+}
+
+function showSettingsExport(){
+  const area=document.getElementById('settings-export-area');
+  const imp=document.getElementById('settings-import-area');
+  imp.classList.add('hidden');
+  const isVisible=!area.classList.contains('hidden');
+  area.classList.toggle('hidden', isVisible);
+  if(!isVisible) document.getElementById('settings-export-data').value=JSON.stringify(PS,null,2);
+}
+
+function copySettingsExport(){
+  const ta=document.getElementById('settings-export-data');
+  try{navigator.clipboard.writeText(ta.value);}catch(e){ta.select();document.execCommand('copy');}
+  const btn=document.querySelector('[onclick="copySettingsExport()"]');
+  btn.textContent='✅ Copié!'; setTimeout(()=>btn.textContent='📋 COPIER',2000);
+}
+
+function showSettingsImport(){
+  const area=document.getElementById('settings-import-area');
+  const exp=document.getElementById('settings-export-area');
+  exp.classList.add('hidden');
+  area.classList.toggle('hidden');
+}
+
+function doSettingsImport(){
+  const raw=document.getElementById('settings-import-data').value.trim();
+  try{
+    const d=JSON.parse(raw);
+    if(!d.pseudo)throw new Error();
+    PS={...PS,...d};
+    currentDifficulty=PS.difficulty||'easy';
+    save();updateHomeCredits();refreshSettingsUI();
+    document.getElementById('settings-import-area').classList.add('hidden');
+    alert('✅ Sauvegarde importée avec succès!');
+  }catch(e){
+    alert('❌ Format invalide. Vérifie ta sauvegarde.');
+  }
+}
+
+function confirmReset(){
+  if(confirm('⚠️ Effacer toute la progression? Cette action est irréversible.')){
+    localStorage.removeItem('rball');
+    location.reload();
+  }
+}
+
+function refreshSettingsUI(){
+  refreshDifficultyUI();
+  const ws=PS.winScore||21;
+  document.getElementById('win-score-label').innerHTML=`Premier à <b>${ws} pts</b> gagne`;
+  document.querySelectorAll('.score-btn').forEach(b=>{
+    const v=b.textContent==='OFF'?0:parseInt(b.textContent);
+    if(!isNaN(v)) b.classList.toggle('selected',v===ws||(v===0&&(PS.turnTimer||0)===0));
+  });
+  const tt=PS.turnTimer||0;
+  document.getElementById('turn-timer-label').textContent=tt===0?'Pas de limite de temps':`${tt} secondes par tour`;
+  const gifsOn=PS.gifsEnabled!==false;
+  const btn=document.getElementById('gif-toggle');
+  if(btn){btn.textContent=gifsOn?'ON':'OFF';btn.classList.toggle('off',!gifsOn);}
+}
+
+
 
 // CARD BUILDERS
 function buildPlayerCard(player,owned){
