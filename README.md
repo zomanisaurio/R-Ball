@@ -2,7 +2,7 @@
 
 A browser-based basketball card game. Play solo against AI or challenge a friend in real-time multiplayer.
 
-🎮 **[Play now](https://your-username.github.io/r-ball/)**
+🎮 **[Play now](https://zomani.github.io/r-ball/)**
 
 ---
 
