@@ -1285,12 +1285,6 @@ function playerHasBlockingCard(){
 }
 
 // Le joueur tente automatiquement de bloquer le tir de l'IA
-function resolvePlayerBlock(shotAction, ai, gap, onDone){
-  const player=MS.playerCard;
-  const defCards=PS.deck
-    .filter(id=>id!==PS.selectedPlayer)
-    .map(id=>CARDS.actions.find(a=>a.id===id))
-    .filter(a=>a&&['Défense','Ability'].includes(a.type)&&canUseAction(a,player,MS.cooldowns));
 
   const blocker=defCards.sort((a,b)=>{
     const sbA=Math.max(0,(player.stats[a.requiredStat]||70)-a.requiredValue);
